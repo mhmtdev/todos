@@ -1,28 +1,29 @@
 import React from "react";
 
-function Footer() {
+function Footer({ filter, setFilter, todoList, setTodo }) {
+
   return (
     <div>
-      <span class="todo-count">
-        <strong>2</strong>
+      <span className="todo-count">
+        <strong>{todoList.length} </strong>
         items left
       </span>
 
-      <ul class="filters">
+      <ul className="filters">
         <li>
-          <a href="#/" class="selected">
+          <a href="#/" className={filter === "all" ? "selected" : ""} onClick={() => setFilter("all")}>
             All
           </a>
         </li>
         <li>
-          <a href="#/">Active</a>
+          <a href="#/" onClick={() => setFilter("active")} className={filter === "active" ? "selected" : ""}>Active</a>
         </li>
         <li>
-          <a href="#/">Completed</a>
+          <a href="#/" onClick={() => setFilter("completed")} className={filter === "completed" ? "selected" : ""}>Completed</a>
         </li>
       </ul>
 
-      <button class="clear-completed">Clear completed</button>
+      <button className="clear-completed" onClick={()=> setTodo(todoList.filter((todo) => todo.isCompleted === false))}>Clear completed</button>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Form from "./components/Form";
 import List from "./components/List";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
   const [todo, setTodo] = useState([
@@ -16,24 +16,22 @@ function App() {
     },
   ]);
 
-  useEffect(() => {
-    console.log(todo);
-  }, [todo]);
+  const [filter, setFilter] = useState("all");
 
   return (
     <div>
-      <section class="todoapp">
-        <header class="header">
+      <section className="todoapp">
+        <header className="header">
           <h1>todos</h1>
           <Form todoList={todo} setTodo={setTodo} />
         </header>
 
-        <section class="main">
-          <List todoList={todo} setTodo={setTodo} />
+        <section className="main">
+          <List todoList={todo} setTodo={setTodo} filter={filter} />
         </section>
 
-        <footer class="footer">
-          <Footer />
+        <footer className="footer">
+          <Footer filter={filter} setFilter={setFilter} todoList={todo} setTodo={setTodo} />
         </footer>
       </section>
     </div>
